@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-    class Program
+    class Computer : Player
     {
-        static void Main(string[] args)
+        //Member Variables (HAS A)
+
+        //Constructor
+
+        //Member Methods (CAN DO)
+        protected override void GestureChoice()
         {
-            Game game = new Game();
-            game.Run();
+
         }
+
     }
 }
