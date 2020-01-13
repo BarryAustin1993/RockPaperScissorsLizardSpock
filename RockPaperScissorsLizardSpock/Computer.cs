@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-    class Computer : Player
+    public class Computer : Player
     {
         //Member Variables (HAS A)
 
         //Constructor
+        public List<string> Gestures = new List<string>() { "1", "2", "3", "4", "5" };
 
         //Member Methods (CAN DO)
-        protected override void GestureChoice()
+        public override void GestureChoice()
         {
-
+            Random random = new Random();
+            chosenGesture = Gestures[random.Next(5)];
         }
 
     }

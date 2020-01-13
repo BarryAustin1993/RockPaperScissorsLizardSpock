@@ -6,19 +6,26 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-    abstract class Player
+    public abstract class Player
     {
         //Member Variables (HAS A)
-
-        public List<string> Gestures = new List<string>() { "1", "2", "3", "4", "5" };
+        public string chosenGesture;
+        public int gamePoints;
+       
 
 
 
 
         //Constructor
+        public Player()
+        {
+            gamePoints = 0;
+
+        }
+
 
         //Member Methods (CAN DO)
-        protected abstract void GestureChoice();
+        public abstract void GestureChoice();
        
 
     }

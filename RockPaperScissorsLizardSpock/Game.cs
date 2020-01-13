@@ -9,10 +9,12 @@ namespace RockPaperScissorsLizardSpock
     class Game
     {
         //Member Variables (HAS A)
-        
+        public Human player1;
+        public Player player2;
         //Constructor
         public Game()
         {
+        
 
         }
         //Member Methods (CAN DO)
@@ -34,15 +36,19 @@ namespace RockPaperScissorsLizardSpock
             Console.Clear();
         }
         public void GameSettingValidate()
-        {
+        {          
             String userDecision = GameSettingB();
             switch (userDecision)
             {
                 case "1":
-                    OnePlayerGame();
+                    player1 = new Human();
+                    player2 = new Human();
+                    GamePlay();
                     break;
                 case "2":
-                    TwoPlayerGame();
+                    player1 = new Human();
+                    player2 = new Computer();
+                    GamePlay();
                     break;
             }
         }
@@ -63,20 +69,133 @@ namespace RockPaperScissorsLizardSpock
               "2: Human versus Human");
                 userDecision = Console.ReadLine();
                 Console.Clear();
-                if (userDecision != "1" && userDecision != "2") ;
+                if (userDecision != "1" && userDecision != "2")
                 {
                     Console.WriteLine("You have entered an invalid option! Please try again!");
                 }
             } while (userDecision != "1" && userDecision != "2");
             return userDecision;
         }
-        public void OnePlayerGame()
+        public void GamePlay()
         {
-
+            do
+            {
+                Console.WriteLine("Player Ones Turn!");
+                player1.GestureChoice();
+                Console.ReadLine();
+                Console.Clear();
+                //validations of player 1s choice
+                Console.WriteLine("Player Two Turn!");
+                player2.GestureChoice();
+                Console.ReadLine();
+                Console.Clear();
+                //validations of player 2s choice
+                GestureComparrison();
+                
+            }
+            while (player1.gamePoints < 2 && player2.gamePoints < 2);
+            GameDecision();
         }
-        public void TwoPlayerGame()
+        public void GameDecision()
+            {
+                if (player1.gamePoints == 2)
+                {
+                    Console.WriteLine("Congradulations! Player One you Win!");
+                    //Restart game or end game choice
+                }
+                else if (player2.gamePoints == 2)
+                {
+                    Console.WriteLine("Congradulations! Player Two you Win!");
+                    //Restart game or end game choice
+                }
+            } 
+        public void GestureComparrison()
         {
-
+            if (player1.chosenGesture == "1")
+            {
+                if (player2.chosenGesture == "1")
+                {
+                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                }
+                else if (player2.chosenGesture == "4" || player2.chosenGesture == "3")
+                {
+                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    player1.gamePoints++;
+                }
+                else if (player2.chosenGesture == "5" || player2.chosenGesture == "2")
+                {
+                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    player2.gamePoints++;
+                }
+            }
+            else if (player1.chosenGesture == "2")
+            {
+                if (player2.chosenGesture == "2")
+                {
+                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                }
+                else if (player2.chosenGesture == "1" || player2.chosenGesture == "5")
+                {
+                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    player1.gamePoints++;
+                }
+                else if (player2.chosenGesture == "4" || player2.chosenGesture == "3")
+                {
+                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    player2.gamePoints++;
+                }
+            }
+            else if (player1.chosenGesture == "3")
+            {
+                if (player2.chosenGesture == "3")
+                {
+                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                }
+                else if (player2.chosenGesture == "2" || player2.chosenGesture == "4")
+                {
+                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    player1.gamePoints++;
+                }
+                else if (player2.chosenGesture == "5" || player2.chosenGesture == "1")
+                {
+                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    player2.gamePoints++;
+                }
+            }
+            else if (player1.chosenGesture == "4")
+            {
+                if (player2.chosenGesture == "3")
+                {
+                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                }
+                else if (player2.chosenGesture == "5" || player2.chosenGesture == "2")
+                {
+                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    player1.gamePoints++;
+                }
+                else if (player2.chosenGesture == "1" || player2.chosenGesture == "3")
+                {
+                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    player2.gamePoints++;
+                }
+            }
+            else if (player1.chosenGesture == "5")
+            {
+                if (player2.chosenGesture == "5")
+                {
+                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                }
+                else if (player2.chosenGesture == "1" || player2.chosenGesture == "3")
+                {
+                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    player1.gamePoints++;
+                }
+                else if (player2.chosenGesture == "2" || player2.chosenGesture == "4")
+                {
+                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    player2.gamePoints++;
+                }
+            }
         }
     }
 }
