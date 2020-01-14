@@ -15,8 +15,6 @@ namespace RockPaperScissorsLizardSpock
         //Constructor
         public Game()
         {
-
-
         }
         //Member Methods (CAN DO)
         public void Run()
@@ -27,6 +25,7 @@ namespace RockPaperScissorsLizardSpock
             DetermineRounds();
             GamePlay();
             GameDecision();
+            PlayAgain();
         }
         public void Instructions()
         {
@@ -135,14 +134,13 @@ namespace RockPaperScissorsLizardSpock
                 Console.Clear();
                 Console.WriteLine("Congradulations! " + player1.userName + " you Win!");
                 Console.ReadLine();
-                //Restart game or end game choice
             }
             else if (player2.gamePoints == victoryPoints)
             {
                 Console.Clear();
-                Console.WriteLine("Congradulations! " + player2.userName + " Two you Win!");
+                Console.WriteLine("Congradulations! " + player2.userName + " you Win!");
                 Console.ReadLine();
-                //Restart game or end game choice
+                
             }
         }
         public void GestureComparrison()
@@ -233,5 +231,25 @@ namespace RockPaperScissorsLizardSpock
                 }
             }
         }
+        public void PlayAgain()
+        {
+            Console.WriteLine("Would you like to play again?\n1: Yes\n2: No");
+            switch (Console.ReadLine().ToLower())
+            {
+                case "1":
+                case "yes":
+                    Console.Clear();
+                    Run();
+                    break;
+                case "2":
+                case "no":
+                    Console.WriteLine("BAZINGA!");
+                    Console.ReadLine();
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }
