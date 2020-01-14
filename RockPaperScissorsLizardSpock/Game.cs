@@ -35,21 +35,21 @@ namespace RockPaperScissorsLizardSpock
             Console.ReadLine();
             Console.Clear();
         }
-        public void GameSettingValidate()
+        public void GameSettingValidate(String userDecision)
         {          
-            String userDecision = GameSettingB();
+            
             switch (userDecision)
             {
                 case "1":
                     player1 = new Human();
-                    player2 = new Human();
+                    player2 = new Computer();
                     GamePlay();
                     break;
                 case "2":
                     player1 = new Human();
-                    player2 = new Computer();
+                    player2 = new Human();
                     GamePlay();
-                    break;
+                    break;               
             }
         }
         public void GameSettings()
@@ -59,7 +59,7 @@ namespace RockPaperScissorsLizardSpock
                 "To settle debates in a timely fashion, just use the numbers associated with your choice!");
                 GameSettingB();
         }
-        public string GameSettingB()
+        public void GameSettingB()
         {
             string userDecision;
             do 
@@ -74,7 +74,7 @@ namespace RockPaperScissorsLizardSpock
                     Console.WriteLine("You have entered an invalid option! Please try again!");
                 }
             } while (userDecision != "1" && userDecision != "2");
-            return userDecision;
+            GameSettingValidate(userDecision);
         }
         public void GamePlay()
         {
@@ -82,12 +82,10 @@ namespace RockPaperScissorsLizardSpock
             {
                 Console.WriteLine("Player Ones Turn!");
                 player1.GestureChoice();
-                Console.ReadLine();
                 Console.Clear();
                 //validations of player 1s choice
                 Console.WriteLine("Player Two Turn!");
                 player2.GestureChoice();
-                Console.ReadLine();
                 Console.Clear();
                 //validations of player 2s choice
                 GestureComparrison();
