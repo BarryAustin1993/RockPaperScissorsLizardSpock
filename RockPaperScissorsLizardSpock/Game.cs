@@ -11,6 +11,7 @@ namespace RockPaperScissorsLizardSpock
         //Member Variables (HAS A)
         public Human player1;
         public Player player2;
+        public int victoryPoints;
         //Constructor
         public Game()
         {
@@ -23,14 +24,16 @@ namespace RockPaperScissorsLizardSpock
             Instructions();
             PlayerSettings();
             PlayerNames();
+            DetermineRounds();
             GamePlay();
+            GameDecision();
         }
         public void Instructions()
         {
             Console.WriteLine("Welcome to your simulated game of Rock, Paper, Scissors, Lizard, Spock!\n" +
                 "or RPSLS for short. We use this game since the orginal game of RPS, is flawed.\n" +
                 "Statistics show that if you know your Opponent, you will pick the same item 75% of the time!\n" +
-                "This is solved by adding two varibles. hit ENTER to Learn the additional rule sets!");
+                "This is solved by adding two varibles.\n\nHit ENTER to Learn the additional rule sets!");
             Console.ReadLine();
             Console.Clear();
             Console.WriteLine("Rock crushes Scissors\nScossors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard posisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n\nHit Enter to continue to Game Set Up!!");
@@ -57,8 +60,8 @@ namespace RockPaperScissorsLizardSpock
             string userDecision;
 
             Console.WriteLine("First are you playing against a Computer to let the universe decide...\n" +
-                "Or against another player to settle a debate!" +
-                "To settle debates in a timely fashion, just use the numbers associated with your choice!");
+                "Or against another player to settle a debate!\n" +
+                "To settle debates in a timely fashion, just use the numbers associated with your choice!\n\nHit Enter to go to next menu.");
             Console.ReadLine();
 
             Console.WriteLine("Please enter 1 or 2:\n" +
@@ -90,37 +93,54 @@ namespace RockPaperScissorsLizardSpock
             player1.NameChoice();
             player2.NameChoice();
         }
+        public void DetermineRounds()
+        {
+            Console.WriteLine("How many points, does a player need to become victorious!");
+            string userInput = Console.ReadLine();
+            bool success = Int32.TryParse(userInput, out victoryPoints);
+            if (success)
+            {
+                victoryPoints = Convert.ToInt32(userInput);
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Please enter number such as 1,2,3, ect");
+                DetermineRounds();
+            }
+            
+        }
         public void GamePlay()
         {
             do
             {
-                Console.WriteLine("Player Ones Turn!\n");
+                Console.WriteLine(player1.userName + ": " + player1.gamePoints + "     " + player2.userName + ": " + player2.gamePoints + "\n\n" +
+                    player1.userName + "'s Turn!");
                 player1.GestureChoice();
                 Console.Clear();
-                //validations of player 1s choice
-                Console.WriteLine("Player Two Turn!");
+                Console.WriteLine(player1.userName + ": " + player1.gamePoints + "     " + player2.userName + ": " + player2.gamePoints + "\n\n" +
+                   player2.userName + "'s Turn!");
                 player2.GestureChoice();
                 Console.Clear();
-                //validations of player 2s choice
                 GestureComparrison();
 
             }
-            while (player1.gamePoints < 2 && player2.gamePoints < 2);
-            GameDecision();
+            while (player1.gamePoints != victoryPoints && player2.gamePoints != victoryPoints);
         }
         public void GameDecision()
         {
-            if (player1.gamePoints == 2)
+            if (player1.gamePoints == victoryPoints)
             {
                 Console.Clear();
-                Console.WriteLine("Congradulations! Player One you Win!");
+                Console.WriteLine("Congradulations! " + player1.userName + " you Win!");
                 Console.ReadLine();
                 //Restart game or end game choice
             }
-            else if (player2.gamePoints == 2)
+            else if (player2.gamePoints == victoryPoints)
             {
                 Console.Clear();
-                Console.WriteLine("Congradulations! Player Two you Win!");
+                Console.WriteLine("Congradulations! " + player2.userName + " Two you Win!");
                 Console.ReadLine();
                 //Restart game or end game choice
             }
@@ -135,12 +155,12 @@ namespace RockPaperScissorsLizardSpock
                 }
                 else if (player2.chosenGesture == "lizard" || player2.chosenGesture == "scissors")
                 {
-                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player1.userName + " won that round!");
                     player1.gamePoints++;
                 }
                 else if (player2.chosenGesture == "spock" || player2.chosenGesture == "paper")
                 {
-                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player2.userName + " won that round!");
                     player2.gamePoints++;
                 }
             }
@@ -152,12 +172,12 @@ namespace RockPaperScissorsLizardSpock
                 }
                 else if (player2.chosenGesture == "rock" || player2.chosenGesture == "spock")
                 {
-                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player1.userName + " won that round!");
                     player1.gamePoints++;
                 }
                 else if (player2.chosenGesture == "lizard" || player2.chosenGesture == "scissors")
                 {
-                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player2.userName + " won that round!");
                     player2.gamePoints++;
                 }
             }
@@ -169,12 +189,12 @@ namespace RockPaperScissorsLizardSpock
                 }
                 else if (player2.chosenGesture == "paper" || player2.chosenGesture == "lizard")
                 {
-                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player1.userName + " won that round!");
                     player1.gamePoints++;
                 }
                 else if (player2.chosenGesture == "spock" || player2.chosenGesture == "rock")
                 {
-                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player2.userName + " won that round!");
                     player2.gamePoints++;
                 }
             }
@@ -186,12 +206,12 @@ namespace RockPaperScissorsLizardSpock
                 }
                 else if (player2.chosenGesture == "spock" || player2.chosenGesture == "paper")
                 {
-                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player1.userName + " won that round!");
                     player1.gamePoints++;
                 }
                 else if (player2.chosenGesture == "rock" || player2.chosenGesture == "scissors")
                 {
-                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player2.userName + " won that round!");
                     player2.gamePoints++;
                 }
             }
@@ -203,12 +223,12 @@ namespace RockPaperScissorsLizardSpock
                 }
                 else if (player2.chosenGesture == "rock" || player2.chosenGesture == "scissors")
                 {
-                    Console.WriteLine("Player 1 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player1.userName + " won that round!");
                     player1.gamePoints++;
                 }
                 else if (player2.chosenGesture == "paper" || player2.chosenGesture == "lizard")
                 {
-                    Console.WriteLine("Player 2 gains a point, just one more to win it all!");
+                    Console.WriteLine(player1.userName + " picked " + player1.chosenGesture + ", and " + player2.userName + " picked " + player2.chosenGesture + "!\n" + player2.userName + " won that round!");
                     player2.gamePoints++;
                 }
             }

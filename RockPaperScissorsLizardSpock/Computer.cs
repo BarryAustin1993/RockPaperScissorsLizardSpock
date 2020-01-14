@@ -18,7 +18,7 @@ namespace RockPaperScissorsLizardSpock
         {
             Random random = new Random();
             chosenGesture = Gestures[random.Next(5)].ToLower();
-            Console.WriteLine("The Computer has chosen " + chosenGesture + "\nPress Enter to go to next round");
+            Console.WriteLine(userName + " has chosen " + chosenGesture + "\nPress Enter to go to next round");
             Console.ReadLine();
         }
         public override void NameChoice()
