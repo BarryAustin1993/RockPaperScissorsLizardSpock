@@ -110,20 +110,20 @@ namespace RockPaperScissorsLizardSpock
             }
             
         }
+        public void PlayerTurn(Player currentPlayer)
+        {
+            Console.WriteLine(player1.userName + ": " + player1.gamePoints + "     " + player2.userName + ": " + player2.gamePoints + "\n\n" +
+                   currentPlayer.userName + "'s Turn!");
+            currentPlayer.GestureChoice();
+            Console.Clear();
+        }
         public void GamePlay()
         {
             do
             {
-                Console.WriteLine(player1.userName + ": " + player1.gamePoints + "     " + player2.userName + ": " + player2.gamePoints + "\n\n" +
-                    player1.userName + "'s Turn!");
-                player1.GestureChoice();
-                Console.Clear();
-                Console.WriteLine(player1.userName + ": " + player1.gamePoints + "     " + player2.userName + ": " + player2.gamePoints + "\n\n" +
-                   player2.userName + "'s Turn!");
-                player2.GestureChoice();
-                Console.Clear();
+                PlayerTurn(player1);
+                PlayerTurn(player2);
                 GestureComparrison();
-
             }
             while (player1.gamePoints != victoryPoints && player2.gamePoints != victoryPoints);
         }
