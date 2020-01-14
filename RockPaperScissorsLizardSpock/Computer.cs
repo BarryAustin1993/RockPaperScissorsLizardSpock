@@ -12,7 +12,7 @@ namespace RockPaperScissorsLizardSpock
 
         //Constructor
         public List<string> Gestures = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
-
+        public List<string> Names = new List<string>() { "Paul", "Nevin", "Mike", "Micheal", "David", "Brett", "Flamingo"};
         //Member Methods (CAN DO)
         public override void GestureChoice()
         {
@@ -21,6 +21,10 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("The Computer has chosen " + chosenGesture + "\nPress Enter to go to next round");
             Console.ReadLine();
         }
-
+        public override void NameChoice()
+        {
+            Random random = new Random();
+            userName = Names[random.Next(7)];
+        }
     }
 }

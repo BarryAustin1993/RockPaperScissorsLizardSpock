@@ -14,16 +14,18 @@ namespace RockPaperScissorsLizardSpock
         //Constructor
         public Game()
         {
-        
+
 
         }
         //Member Methods (CAN DO)
         public void Run()
         {
             Instructions();
-            GameSettings();
+            PlayerSettings();
+            PlayerNames();
+            GamePlay();
         }
-        public void Instructions ()
+        public void Instructions()
         {
             Console.WriteLine("Welcome to your simulated game of Rock, Paper, Scissors, Lizard, Spock!\n" +
                 "or RPSLS for short. We use this game since the orginal game of RPS, is flawed.\n" +
@@ -31,56 +33,67 @@ namespace RockPaperScissorsLizardSpock
                 "This is solved by adding two varibles. hit ENTER to Learn the additional rule sets!");
             Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Rock crushes Scissors\nScossors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard posisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\nHit Enter to continue to Game Settings!!");
+            Console.WriteLine("Rock crushes Scissors\nScossors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard posisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n\nHit Enter to continue to Game Set Up!!");
             Console.ReadLine();
             Console.Clear();
         }
-        public void GameSettingValidate(String userDecision)
-        {          
-            
+        public void TypeOfPlayersDefined(String userDecision)
+        {
+            Console.Clear();
             switch (userDecision)
             {
                 case "1":
                     player1 = new Human();
                     player2 = new Computer();
-                    GamePlay();
                     break;
                 case "2":
                     player1 = new Human();
                     player2 = new Human();
-                    GamePlay();
-                    break;               
+                    break;
             }
         }
-        public void GameSettings()
+        public void PlayerSettings()
         {
+            string userDecision;
+
             Console.WriteLine("First are you playing against a Computer to let the universe decide...\n" +
                 "Or against another player to settle a debate!" +
                 "To settle debates in a timely fashion, just use the numbers associated with your choice!");
-                GameSettingB();
-        }
-        public void GameSettingB()
-        {
-            string userDecision;
-            do 
+            Console.ReadLine();
+
+            Console.WriteLine("Please enter 1 or 2:\n" +
+          "1: One Player\n" +
+          "2: Two Player");
+            switch (Console.ReadLine().ToLower())
             {
-                Console.WriteLine("Please enter 1 or 2:\n" +
-              "1: Human versus Computer\n" +
-              "2: Human versus Human");
-                userDecision = Console.ReadLine();
-                Console.Clear();
-                if (userDecision != "1" && userDecision != "2")
-                {
-                    Console.WriteLine("You have entered an invalid option! Please try again!");
-                }
-            } while (userDecision != "1" && userDecision != "2");
-            GameSettingValidate(userDecision);
+                case "1":
+                case "one":
+                case "one player":
+                    userDecision = "1";
+                    TypeOfPlayersDefined(userDecision);
+                    break;
+                case "2":
+                case "two":
+                case "two player":
+                    userDecision = "2";
+                    TypeOfPlayersDefined(userDecision);
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Not a valid option, Please try again!");
+                    PlayerSettings();
+                    break;
+            }
+        }
+        public void PlayerNames()
+        {
+            player1.NameChoice();
+            player2.NameChoice();
         }
         public void GamePlay()
         {
             do
             {
-                Console.WriteLine("Player One : " + player1.gamePoints + "\nPlayer Two : " + player2.gamePoints + "\n");
                 Console.WriteLine("Player Ones Turn!\n");
                 player1.GestureChoice();
                 Console.Clear();
@@ -90,28 +103,28 @@ namespace RockPaperScissorsLizardSpock
                 Console.Clear();
                 //validations of player 2s choice
                 GestureComparrison();
-               
+
             }
             while (player1.gamePoints < 2 && player2.gamePoints < 2);
             GameDecision();
         }
         public void GameDecision()
+        {
+            if (player1.gamePoints == 2)
             {
-                if (player1.gamePoints == 2)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Congradulations! Player One you Win!");
-                    Console.ReadLine();
-                    //Restart game or end game choice
-                }
-                else if (player2.gamePoints == 2)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Congradulations! Player Two you Win!");
-                    Console.ReadLine();
-                    //Restart game or end game choice
-                }
-            } 
+                Console.Clear();
+                Console.WriteLine("Congradulations! Player One you Win!");
+                Console.ReadLine();
+                //Restart game or end game choice
+            }
+            else if (player2.gamePoints == 2)
+            {
+                Console.Clear();
+                Console.WriteLine("Congradulations! Player Two you Win!");
+                Console.ReadLine();
+                //Restart game or end game choice
+            }
+        }
         public void GestureComparrison()
         {
             if (player1.chosenGesture == "rock")

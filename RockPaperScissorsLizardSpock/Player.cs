@@ -11,6 +11,7 @@ namespace RockPaperScissorsLizardSpock
         //Member Variables (HAS A)
         public string chosenGesture;
         public int gamePoints;
+        public string userName;
        
 
 
@@ -20,13 +21,12 @@ namespace RockPaperScissorsLizardSpock
         public Player()
         {
             gamePoints = 0;
-
         }
 
 
         //Member Methods (CAN DO)
         public abstract void GestureChoice();
-       
+        public abstract void NameChoice();
 
     }
 }
