@@ -80,7 +80,8 @@ namespace RockPaperScissorsLizardSpock
         {
             do
             {
-                Console.WriteLine("Player Ones Turn!");
+                Console.WriteLine("Player One : " + player1.gamePoints + "\nPlayer Two : " + player2.gamePoints + "\n");
+                Console.WriteLine("Player Ones Turn!\n");
                 player1.GestureChoice();
                 Console.Clear();
                 //validations of player 1s choice
@@ -89,7 +90,7 @@ namespace RockPaperScissorsLizardSpock
                 Console.Clear();
                 //validations of player 2s choice
                 GestureComparrison();
-                
+               
             }
             while (player1.gamePoints < 2 && player2.gamePoints < 2);
             GameDecision();
@@ -98,97 +99,101 @@ namespace RockPaperScissorsLizardSpock
             {
                 if (player1.gamePoints == 2)
                 {
+                    Console.Clear();
                     Console.WriteLine("Congradulations! Player One you Win!");
+                    Console.ReadLine();
                     //Restart game or end game choice
                 }
                 else if (player2.gamePoints == 2)
                 {
+                    Console.Clear();
                     Console.WriteLine("Congradulations! Player Two you Win!");
+                    Console.ReadLine();
                     //Restart game or end game choice
                 }
             } 
         public void GestureComparrison()
         {
-            if (player1.chosenGesture == "1")
+            if (player1.chosenGesture == "rock")
             {
-                if (player2.chosenGesture == "1")
+                if (player2.chosenGesture == "rock")
                 {
                     Console.WriteLine("Both Players picked Rock. No points Awarded!");
                 }
-                else if (player2.chosenGesture == "4" || player2.chosenGesture == "3")
+                else if (player2.chosenGesture == "lizard" || player2.chosenGesture == "scissors")
                 {
                     Console.WriteLine("Player 1 gains a point, just one more to win it all!");
                     player1.gamePoints++;
                 }
-                else if (player2.chosenGesture == "5" || player2.chosenGesture == "2")
+                else if (player2.chosenGesture == "spock" || player2.chosenGesture == "paper")
                 {
                     Console.WriteLine("Player 2 gains a point, just one more to win it all!");
                     player2.gamePoints++;
                 }
             }
-            else if (player1.chosenGesture == "2")
+            else if (player1.chosenGesture == "paper")
             {
-                if (player2.chosenGesture == "2")
+                if (player2.chosenGesture == "paper")
                 {
-                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                    Console.WriteLine("Both Players picked Paper. No points Awarded!");
                 }
-                else if (player2.chosenGesture == "1" || player2.chosenGesture == "5")
+                else if (player2.chosenGesture == "rock" || player2.chosenGesture == "spock")
                 {
                     Console.WriteLine("Player 1 gains a point, just one more to win it all!");
                     player1.gamePoints++;
                 }
-                else if (player2.chosenGesture == "4" || player2.chosenGesture == "3")
+                else if (player2.chosenGesture == "lizard" || player2.chosenGesture == "scissors")
                 {
                     Console.WriteLine("Player 2 gains a point, just one more to win it all!");
                     player2.gamePoints++;
                 }
             }
-            else if (player1.chosenGesture == "3")
+            else if (player1.chosenGesture == "scissors")
             {
-                if (player2.chosenGesture == "3")
+                if (player2.chosenGesture == "scissors")
                 {
-                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                    Console.WriteLine("Both Players picked scissors. No points Awarded!");
                 }
-                else if (player2.chosenGesture == "2" || player2.chosenGesture == "4")
+                else if (player2.chosenGesture == "paper" || player2.chosenGesture == "lizard")
                 {
                     Console.WriteLine("Player 1 gains a point, just one more to win it all!");
                     player1.gamePoints++;
                 }
-                else if (player2.chosenGesture == "5" || player2.chosenGesture == "1")
+                else if (player2.chosenGesture == "spock" || player2.chosenGesture == "rock")
                 {
                     Console.WriteLine("Player 2 gains a point, just one more to win it all!");
                     player2.gamePoints++;
                 }
             }
-            else if (player1.chosenGesture == "4")
+            else if (player1.chosenGesture == "lizard")
             {
-                if (player2.chosenGesture == "3")
+                if (player2.chosenGesture == "lizard")
                 {
-                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                    Console.WriteLine("Both Players picked Lizard. No points Awarded!");
                 }
-                else if (player2.chosenGesture == "5" || player2.chosenGesture == "2")
+                else if (player2.chosenGesture == "spock" || player2.chosenGesture == "paper")
                 {
                     Console.WriteLine("Player 1 gains a point, just one more to win it all!");
                     player1.gamePoints++;
                 }
-                else if (player2.chosenGesture == "1" || player2.chosenGesture == "3")
+                else if (player2.chosenGesture == "rock" || player2.chosenGesture == "scissors")
                 {
                     Console.WriteLine("Player 2 gains a point, just one more to win it all!");
                     player2.gamePoints++;
                 }
             }
-            else if (player1.chosenGesture == "5")
+            else if (player1.chosenGesture == "spock")
             {
-                if (player2.chosenGesture == "5")
+                if (player2.chosenGesture == "spock")
                 {
-                    Console.WriteLine("Both Players picked Rock. No points Awarded!");
+                    Console.WriteLine("Both Players picked Spock. No points Awarded!");
                 }
-                else if (player2.chosenGesture == "1" || player2.chosenGesture == "3")
+                else if (player2.chosenGesture == "rock" || player2.chosenGesture == "scissors")
                 {
                     Console.WriteLine("Player 1 gains a point, just one more to win it all!");
                     player1.gamePoints++;
                 }
-                else if (player2.chosenGesture == "2" || player2.chosenGesture == "4")
+                else if (player2.chosenGesture == "paper" || player2.chosenGesture == "lizard")
                 {
                     Console.WriteLine("Player 2 gains a point, just one more to win it all!");
                     player2.gamePoints++;

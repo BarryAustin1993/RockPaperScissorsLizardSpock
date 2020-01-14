@@ -16,8 +16,34 @@ namespace RockPaperScissorsLizardSpock
         public override void GestureChoice()
         {
             Console.WriteLine("Please choose an option:\n1: Rock\n2: Paper\n3: Scissors\n4: Lizzard\n5: Spock");
-            string gestureChoice = Console.ReadLine();
-
+            switch (Console.ReadLine().ToLower())
+            {
+                case "1":
+                case "rock":
+                    chosenGesture = "rock";
+                    break;
+                case "2":
+                case "paper":
+                    chosenGesture = "paper";
+                    break;
+                case "3":
+                case "scissors":
+                    chosenGesture = "scissors";
+                    break;
+                case "4":
+                case "lizard":
+                    chosenGesture = "lizard";
+                    break;
+                case "5":
+                case "spock":
+                    chosenGesture = "spock";
+                    break;
+                default:
+                    Console.WriteLine("Invalid Choice, Go Agian");
+                    GestureChoice();
+                    break;
+            }            
+         
         }
 
     }

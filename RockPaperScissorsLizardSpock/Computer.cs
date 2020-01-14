@@ -11,13 +11,15 @@ namespace RockPaperScissorsLizardSpock
         //Member Variables (HAS A)
 
         //Constructor
-        public List<string> Gestures = new List<string>() { "1", "2", "3", "4", "5" };
+        public List<string> Gestures = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
 
         //Member Methods (CAN DO)
         public override void GestureChoice()
         {
             Random random = new Random();
-            chosenGesture = Gestures[random.Next(5)];
+            chosenGesture = Gestures[random.Next(5)].ToLower();
+            Console.WriteLine("The Computer has chosen " + chosenGesture + "\nPress Enter to go to next round");
+            Console.ReadLine();
         }
 
     }
